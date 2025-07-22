@@ -1,13 +1,13 @@
-import Logo from "../../assets/netflix-logo.png";
+import Logo from "../../assets/netflix-logo.jpg";
 import Avatar from "../../assets/avatar.png";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 function Header() {
   return (
-    <header className="z-10 flex items-center justify-between">
+    <header className="z-10 flex items-center justify-between py-5">
       {/* Left Side: Logo + Navigation */}
-      <div className="flex items-center justify-between gap-6">
-        <img src={Logo} className="w-36" alt="netflix logo" />
+      <div className="flex items-center justify-between gap-9">
+        <img src={Logo} className="w-24" alt="netflix logo" />
         <nav>
           <ul className="text-secondary-text-color flex justify-between gap-9 font-semibold">
             <li>Home</li>
