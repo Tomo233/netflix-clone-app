@@ -1,5 +1,6 @@
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import Overlay from "../../components/ui/Overlay";
 
 function HeroSection() {
   return (
@@ -11,6 +12,7 @@ function HeroSection() {
           alt="Poster of the Movie"
           className="h-[800px] w-full object-cover object-top"
         />
+        <Overlay type="top" />
       </div>
 
       {/* Content */}
