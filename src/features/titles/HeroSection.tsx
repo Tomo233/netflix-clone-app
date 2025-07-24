@@ -1,6 +1,28 @@
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Overlay from "../../components/ui/Overlay";
+import Menu from "../../components/ui/Menu";
+const genres = [
+  "Action",
+  "Drama",
+  "Comedy",
+  "Horror",
+  "Thriller",
+  "Romance",
+  "Sci-Fi",
+  "Fantasy",
+  "Crime",
+  "Animation",
+  "Fantasy",
+  "Crime",
+  "Animation",
+  "Fantasy",
+  "Crime",
+  "Animation",
+  "Fantasy",
+  "Crime",
+  "Animation",
+];
 
 function HeroSection() {
   return (
@@ -13,6 +35,12 @@ function HeroSection() {
           className="h-[800px] w-full object-cover object-top"
         />
         <Overlay type="top" />
+      </div>
+
+      {/* Genres Menu */}
+      <div className="mt-5 flex items-center gap-5">
+        <h2 className="text-4xl font-semibold tracking-wide">Movies</h2>
+        <Menu data={["All Genres", ...genres]} grid={true} />
       </div>
 
       {/* Content */}
