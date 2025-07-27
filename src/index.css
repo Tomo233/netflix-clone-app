@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+.MuiTypography-root,
+.MuiButton-root,
+.MuiInputBase-root,
+.MuiMenuItem-root,
+.MuiSelect-root {
+  font-family: "Montserrat", sans-serif !important;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   top: 6em !important;
