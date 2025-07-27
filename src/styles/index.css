@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@import "./theme.css";
+@import "./mui.css";
+@import "./swiper.css";
+
+body {
+  background-color: var(--color-background-color);
+  color: white;
+  font-family: "Montserrat", sans-serif;
+}

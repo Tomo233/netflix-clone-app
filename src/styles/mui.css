@@ -1,0 +1,7 @@
+.MuiTypography-root,
+.MuiButton-root,
+.MuiInputBase-root,
+.MuiMenuItem-root,
+.MuiSelect-root {
+  font-family: "Montserrat", sans-serif !important;
+}
