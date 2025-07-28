@@ -1,6 +1,7 @@
 import Carousel from "../components/ui/Carousel";
 import HeroSection from "../features/titles/HeroSection";
 import TitleCard from "../features/titles/TitleCard";
+import TitleModal from "../features/titles/TitleModal";
 
 type typees = {
   id: number;
@@ -24,6 +25,7 @@ function HomePage() {
   return (
     <div className="mb-96">
       <HeroSection />
+      <TitleModal />
       <Carousel data={cards} renderItem={() => <TitleCard />} />
     </div>
   );
