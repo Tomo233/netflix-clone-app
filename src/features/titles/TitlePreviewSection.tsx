@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import StarIcon from "@mui/icons-material/Star";
+import MediaTag from "../../components/ui/MediaTag";
 
 function TitlePreviewSection() {
   return (
@@ -47,22 +48,16 @@ function TitlePreviewSection() {
             <div className="flex gap-2 pb-1">
               <p>2025</p>
               <p>1h 37m</p>
-              <p className="rounded-sm border border-[#7c7676] px-1 text-sm">
-                HD
-              </p>
+              <MediaTag value="HD" />
             </div>
 
-            <div className="flex items-center gap-3">
-              <p className="rounded-sm border border-[#7c7676] px-1.5 text-sm">
-                16+
-              </p>
+            <div className="flex items-center gap-2">
+              <MediaTag value="16+" />
               <span className="flex items-center gap-1">
                 8.1
                 <StarIcon fontSize="small" />
               </span>
-              <p className="rounded-sm border border-[#7c7676] px-1 text-sm">
-                EN
-              </p>
+              <MediaTag value="EN" />
             </div>
           </div>
 

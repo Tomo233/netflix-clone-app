@@ -1,6 +1,7 @@
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Container from "../../components/ui/Container";
 import Overlay from "../../components/ui/Overlay";
+import MediaTag from "../../components/ui/MediaTag";
 
 function MoreLikeThis() {
   return (
@@ -25,17 +26,11 @@ function MoreLikeThis() {
           {/* Card Menu */}
 
           <Container>
-            <div className="flex items-center justify-between gap-3 py-2">
-              <p className="rounded-sm border border-[#7c7676] px-2 text-sm">
-                16+
-              </p>
-              <p className="rounded-sm border border-[#7c7676] px-1 text-sm">
-                HD
-              </p>
+            <div className="flex items-center justify-between gap-2 py-2">
+              <MediaTag value="16+" />
+              <MediaTag value="HD" />
               <p>1h 37m</p>
-
               <p>2025</p>
-
               <AddCircleOutlineIcon className="h-12! w-12! text-[#a3a3a3]" />
             </div>
             <p className="text-secondary-text-color text-sm font-medium">

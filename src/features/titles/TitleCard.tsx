@@ -5,6 +5,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Container from "../../components/ui/Container";
 // import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import StarIcon from "@mui/icons-material/Star";
+import MediaTag from "../../components/ui/MediaTag";
 
 const movie = {
   adult: false,
@@ -129,16 +130,12 @@ function TitleCard() {
           </div>
 
           <div className="flex items-center gap-3 py-2">
-            <p className="rounded-sm border border-[#7c7676] px-2 text-sm">
-              16+
-            </p>
+            <MediaTag value="16+" />
             <span className="flex items-center gap-1">
               8.1
               <StarIcon fontSize="small" />
             </span>
-            <p className="rounded-sm border border-[#7c7676] px-1 text-sm">
-              HD
-            </p>
+            <MediaTag value="HD" />
           </div>
           <ul className="flex justify-between text-sm font-medium">
             <li>Rousing</li>
