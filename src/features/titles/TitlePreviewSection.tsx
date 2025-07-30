@@ -1,3 +1,5 @@
+import Overlay from "../../components/ui/Overlay";
+
 import CloseIcon from "@mui/icons-material/Close";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -18,13 +20,11 @@ function TitlePreviewSection() {
           className="h-[500px] w-full object-cover object-top"
         />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
+        <Overlay type="bottom" />
 
         {/* Text Content */}
         <div className="absolute inset-0 z-10 flex flex-col justify-end px-10 pb-20 text-white">
           <span className="text-lg font-bold text-red-600">N SHOW</span>
-          <img src="" alt="" />
           <h2 className="mb-3 text-5xl font-extrabold tracking-wide">
             ALMOST COPS
           </h2>

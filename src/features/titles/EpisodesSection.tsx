@@ -22,7 +22,7 @@ function EpisodesSection() {
             <img
               src="https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
               className="w-36"
-              alt=""
+              alt="title image"
             />
             <div>
               <div className="flex items-center justify-between">

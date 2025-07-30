@@ -17,7 +17,7 @@ export default function BasicModal({ children, width = 400 }: BasicModalProps) {
     bgcolor: "#141414",
     color: "#fff",
     boxShadow: 24,
-    maxHeight: "90vh",
+    maxHeight: "100vh",
     overflowY: "auto",
     outline: "none",
   };

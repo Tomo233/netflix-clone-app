@@ -1,7 +1,7 @@
 import BasicModal from "../../components/ui/BasicModal";
+import TitlePreviewSection from "./TitlePreviewSection";
 import EpisodesSection from "./EpisodesSection";
 import MoreLikeThis from "./MoreLikeThis";
-import TitlePreviewSection from "./TitlePreviewSection";
 
 function TitleModal() {
   return (

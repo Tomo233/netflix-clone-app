@@ -1,5 +1,6 @@
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Container from "../../components/ui/Container";
+import Overlay from "../../components/ui/Overlay";
 
 function MoreLikeThis() {
   return (
@@ -15,8 +16,8 @@ function MoreLikeThis() {
               className="rounded-md"
               alt="Image Poster"
             />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/90 to-transparent" />
+            <Overlay type="bottom" />
+
             <h4 className="absolute bottom-2 left-1/2 -translate-x-1/2 font-bold tracking-wide">
               Almost Cops
             </h4>
@@ -40,7 +41,7 @@ function MoreLikeThis() {
             <p className="text-secondary-text-color text-sm font-medium">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
               exercitationem aspernatur obcaecati pariatur eaque doloremque iste
-              molestiae ex,{" "}
+              molestiae ex,
             </p>
           </Container>
         </div>
