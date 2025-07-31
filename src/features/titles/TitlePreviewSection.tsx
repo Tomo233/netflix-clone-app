@@ -3,8 +3,8 @@ import Overlay from "../../components/ui/Overlay";
 import CloseIcon from "@mui/icons-material/Close";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import StarIcon from "@mui/icons-material/Star";
 import MediaTag from "../../components/ui/MediaTag";
+import Rating from "../../components/ui/Rating";
 
 function TitlePreviewSection() {
   return (
@@ -53,10 +53,7 @@ function TitlePreviewSection() {
 
             <div className="flex items-center gap-2">
               <MediaTag value="16+" />
-              <span className="flex items-center gap-1">
-                8.1
-                <StarIcon fontSize="small" />
-              </span>
+              <Rating value={8.1} />
               <MediaTag value="EN" />
             </div>
           </div>

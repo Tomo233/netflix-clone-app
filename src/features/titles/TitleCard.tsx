@@ -3,9 +3,8 @@ import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Container from "../../components/ui/Container";
-// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import StarIcon from "@mui/icons-material/Star";
 import MediaTag from "../../components/ui/MediaTag";
+import Rating from "../../components/ui/Rating";
 
 const movie = {
   adult: false,
@@ -131,10 +130,7 @@ function TitleCard() {
 
           <div className="flex items-center gap-3 py-2">
             <MediaTag value="16+" />
-            <span className="flex items-center gap-1">
-              8.1
-              <StarIcon fontSize="small" />
-            </span>
+            <Rating value={8.1} />
             <MediaTag value="HD" />
           </div>
           <ul className="flex justify-between text-sm font-medium">

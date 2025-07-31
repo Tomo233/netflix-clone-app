@@ -24,7 +24,7 @@ export default function BasicModal({ children, width = 400 }: BasicModalProps) {
 
   return (
     <Modal
-      open={true}
+      open={false}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
