@@ -2,6 +2,7 @@ import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Overlay from "../../components/ui/Overlay";
 import Menu from "../../components/ui/Menu";
+import NetflixShow from "../../components/ui/NetflixShow";
 const genres = [
   "Action",
   "Drama",
@@ -45,7 +46,7 @@ function HeroSection() {
 
       {/* Content */}
       <div className="max-w-4xl space-y-4 px-4 pt-56">
-        <span className="text-lg font-bold text-red-600">N FILM</span>
+        <NetflixShow />
         <h1 className="text-5xl font-extrabold">ALMOST COPS</h1>
         <p className="max-w-xl text-lg">
           Demoted to community officer, reckless ex-detective Jack gets

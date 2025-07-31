@@ -5,6 +5,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
+import NetflixShow from "../../components/ui/NetflixShow";
 
 function TitlePreviewSection() {
   return (
@@ -25,7 +26,8 @@ function TitlePreviewSection() {
 
         {/* Text Content */}
         <div className="absolute inset-0 z-10 flex flex-col justify-end px-10 pb-20 text-white">
-          <span className="text-lg font-bold text-red-600">N SHOW</span>
+          <NetflixShow />
+
           <h2 className="mb-3 text-5xl font-extrabold tracking-wide">
             ALMOST COPS
           </h2>
