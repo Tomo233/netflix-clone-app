@@ -1,7 +1,7 @@
 import Logo from "../../assets/netflix-logo.jpg";
 import Avatar from "../../assets/avatar.png";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SearchTitle from "../../features/titles/SearchTitle";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 function Header() {
   return (
@@ -23,15 +23,11 @@ function Header() {
       <div className="flex items-center gap-3">
         <SearchTitle />
 
-        <div className="flex items-center gap-1">
-          <img src={Avatar} className="w-9 rounded-sm" alt="user avatar" />
-          <ArrowDropDownIcon
-            fontSize="medium"
-            sx={{
-              color: "white",
-            }}
-          />
-        </div>
+        {/* Avatar & Link to Settings */}
+        <img src={Avatar} className="w-9 rounded-sm" alt="user avatar" />
+        <button className="cursor-pointer">
+          <SettingsIcon className="h-4 w-4 text-white" />
+        </button>
       </div>
     </header>
   );
