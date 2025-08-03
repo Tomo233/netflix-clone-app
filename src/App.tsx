@@ -1,14 +1,14 @@
 import Container from "./components/ui/Container";
-import Header from "./components/layout/Header";
+// import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import Settings from "./pages/Settings";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
     <>
       <Container>
-        <Header />
-        <Settings />
+        {/* <Header /> */}
+        <AuthPage />
       </Container>
       <Footer />
     </>

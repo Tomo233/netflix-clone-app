@@ -1,5 +1,13 @@
+import AuthBackground from "../features/authentication/AuthBackground";
+import AuthHeader from "../features/authentication/AuthHeader";
+
 function AuthPage() {
-  return <></>;
+  return (
+    <>
+      <AuthHeader />
+      <AuthBackground />
+    </>
+  );
 }
 
 export default AuthPage;
