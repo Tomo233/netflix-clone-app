@@ -1,3 +1,5 @@
+import LoginForm from "./LoginForm";
+
 function AuthBox() {
   return (
     <div className="mb-36 grid place-items-center pt-8">
@@ -9,6 +11,7 @@ function AuthBox() {
         </p>
 
         {/* LOGIN/SIGN UP FORM */}
+        <LoginForm />
       </div>
     </div>
   );
