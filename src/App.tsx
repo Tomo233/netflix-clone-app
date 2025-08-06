@@ -1,14 +1,14 @@
 import Container from "./components/ui/Container";
-// import Header from "./components/layout/Header";
+import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import AuthPage from "./pages/AuthPage";
+import SearchedResults from "./features/titles/SearchedResults";
 
 function App() {
   return (
     <>
       <Container>
-        {/* <Header /> */}
-        <AuthPage />
+        <Header />
+        <SearchedResults />
       </Container>
       <Footer />
     </>
