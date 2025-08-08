@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 
+import AppLayout from "../components/layout/AppLayout";
+
 import HomePage from "../pages/HomePage";
 import AuthPage from "../pages/AuthPage";
 import MyListPage from "../pages/MyListPage";
@@ -21,19 +23,25 @@ const authRoutes = authPaths.map((path) => ({
 }));
 
 const router = createBrowserRouter([
-  ...authRoutes,
-  ...titleRoutes,
   {
-    path: "/my-list",
-    Component: MyListPage,
-  },
-  {
-    path: "/settings",
-    Component: Settings,
-  },
-  {
-    path: "/settings/select-avatar",
-    Component: SelectAvatarPage,
+    path: "/",
+    Component: AppLayout,
+    children: [
+      ...authRoutes,
+      ...titleRoutes,
+      {
+        path: "/my-list",
+        Component: MyListPage,
+      },
+      {
+        path: "/settings",
+        Component: Settings,
+      },
+      {
+        path: "/settings/select-avatar",
+        Component: SelectAvatarPage,
+      },
+    ],
   },
   {
     path: "/search",
