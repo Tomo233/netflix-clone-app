@@ -23,11 +23,11 @@ const authRoutes = authPaths.map((path) => ({
 }));
 
 const router = createBrowserRouter([
+  ...authRoutes,
   {
     path: "/",
     Component: AppLayout,
     children: [
-      ...authRoutes,
       ...titleRoutes,
       {
         path: "/my-list",
@@ -41,11 +41,11 @@ const router = createBrowserRouter([
         path: "/settings/select-avatar",
         Component: SelectAvatarPage,
       },
+      {
+        path: "/search",
+        Component: SearchedResultsPage,
+      },
     ],
-  },
-  {
-    path: "/search",
-    Component: SearchedResultsPage,
   },
 ]);
 
