@@ -2,6 +2,7 @@ import Logo from "../../assets/netflix-logo.jpg";
 import Avatar from "../../assets/avatar.png";
 import SearchTitle from "../../features/titles/SearchTitle";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { Link } from "react-router";
 
 function Header() {
   return (
@@ -11,10 +12,10 @@ function Header() {
         <img src={Logo} className="w-24" alt="netflix logo" />
         <nav>
           <ul className="text-secondary-text-color flex justify-between gap-9 font-semibold">
-            <li>Home</li>
-            <li>Movies</li>
-            <li>Tv Shows</li>
-            <li>My List</li>
+            <Link to="/browse">Home</Link>
+            <Link to="/movie">Movies</Link>
+            <Link to="/tv">Tv Shows</Link>
+            <Link to="/my-list">My List</Link>
           </ul>
         </nav>
       </div>
@@ -25,9 +26,9 @@ function Header() {
 
         {/* Avatar & Link to Settings */}
         <img src={Avatar} className="w-9 rounded-sm" alt="user avatar" />
-        <button className="cursor-pointer">
+        <Link className="cursor-pointer" to="/settings">
           <SettingsIcon className="h-4 w-4 text-white" />
-        </button>
+        </Link>
       </div>
     </header>
   );
