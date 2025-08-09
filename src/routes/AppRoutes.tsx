@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, redirect, RouterProvider } from "react-router";
 
 import AppLayout from "../components/layout/AppLayout";
 
@@ -29,6 +29,10 @@ const router = createBrowserRouter([
     Component: AppLayout,
     children: [
       ...titleRoutes,
+      {
+        path: "/",
+        loader: () => redirect("/browse"),
+      },
       {
         path: "/my-list",
         Component: MyListPage,
