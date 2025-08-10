@@ -1,31 +1,13 @@
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Overlay from "../../components/ui/Overlay";
-import Menu from "../../components/ui/Menu";
 import NetflixShow from "../../components/ui/NetflixShow";
-const genres = [
-  "Action",
-  "Drama",
-  "Comedy",
-  "Horror",
-  "Thriller",
-  "Romance",
-  "Sci-Fi",
-  "Fantasy",
-  "Crime",
-  "Animation",
-  "Fantasy",
-  "Crime",
-  "Animation",
-  "Fantasy",
-  "Crime",
-  "Animation",
-  "Fantasy",
-  "Crime",
-  "Animation",
-];
+import HeroTitleMenu from "./HeroTitleMenu";
+import { useLocation } from "react-router";
 
 function HeroSection() {
+  const { pathname } = useLocation();
+
   return (
     <section className="mb-64">
       {/* Image */}
@@ -39,10 +21,8 @@ function HeroSection() {
       </div>
 
       {/* Genres Menu */}
-      <div className="mt-5 flex items-center gap-5">
-        <h2 className="text-4xl font-semibold tracking-wide">Movies</h2>
-        <Menu data={["All Genres", ...genres]} grid={true} />
-      </div>
+
+      {pathname !== "/browse" && <HeroTitleMenu />}
 
       {/* Content */}
       <div className="max-w-4xl space-y-4 px-4 pt-56">
