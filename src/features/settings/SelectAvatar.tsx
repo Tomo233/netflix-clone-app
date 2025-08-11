@@ -1,10 +1,16 @@
+import { useNavigate } from "react-router";
 import Avatar from "../../assets/avatar.png";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 function SelectAvatar() {
+  const navigate = useNavigate();
+
   return (
     <div className="mt-5 mb-64">
-      <div className="my-5 flex items-center gap-2">
+      <div
+        className="my-5 flex cursor-pointer items-center gap-2"
+        onClick={() => navigate(-1)}
+      >
         <KeyboardBackspaceIcon />
         <p>Back To Settings</p>
       </div>

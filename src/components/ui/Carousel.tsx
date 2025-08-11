@@ -22,7 +22,6 @@ function Carousel<T>({ data, renderItem }: CarouselProps<T>) {
       slidesPerGroup={5}
       navigation // ✅ shows arrows
       pagination={false} // ❌ disables dots
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {data.map((item, index) => (
         <SwiperSlide key={index} className="mt-5">

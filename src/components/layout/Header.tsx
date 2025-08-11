@@ -9,7 +9,9 @@ function Header() {
     <header className="z-10 flex items-center justify-between py-5">
       {/* Left Side: Logo + Navigation */}
       <div className="flex items-center justify-between gap-9">
-        <img src={Logo} className="w-24" alt="netflix logo" />
+        <Link to="/browse">
+          <img src={Logo} className="w-24" alt="netflix logo" />
+        </Link>
         <nav>
           <ul className="text-secondary-text-color flex justify-between gap-9 font-semibold">
             <Link to="/browse">Home</Link>

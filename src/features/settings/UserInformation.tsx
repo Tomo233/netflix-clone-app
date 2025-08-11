@@ -1,15 +1,19 @@
 import Avatar from "../../assets/avatar.png";
 import LogoutIcon from "@mui/icons-material/Logout";
 import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router";
+
 function UserInformation() {
   return (
     <section className="mb-10 flex items-center justify-between rounded-lg border border-red-500 p-7">
       <div className="flex items-center gap-5">
         <div className="relative cursor-pointer">
-          <EditIcon
-            className="bg-border-color/70 absolute top-1/2 left-1/2 -translate-1/2 rounded-full p-1"
-            fontSize="large"
-          />
+          <Link to="select-avatar">
+            <EditIcon
+              className="bg-border-color/70 absolute top-1/2 left-1/2 -translate-1/2 rounded-full p-1"
+              fontSize="large"
+            />
+          </Link>
           <img src={Avatar} className="w-20 rounded-xl" alt="User Avatar" />
         </div>
         <div>
