@@ -3,11 +3,16 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
 type BasicModalProps = {
+  open: boolean;
   children: ReactNode;
   width?: number;
 };
 
-export default function BasicModal({ children, width = 400 }: BasicModalProps) {
+export default function BasicModal({
+  open,
+  children,
+  width = 400,
+}: BasicModalProps) {
   const style = {
     position: "absolute",
     top: "50%",
@@ -24,7 +29,7 @@ export default function BasicModal({ children, width = 400 }: BasicModalProps) {
 
   return (
     <Modal
-      open={false}
+      open={open}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >

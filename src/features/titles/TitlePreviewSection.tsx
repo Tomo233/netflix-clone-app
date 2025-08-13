@@ -6,13 +6,24 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 import NetflixShow from "../../components/ui/NetflixShow";
+import { useSearchParams } from "react-router";
 
 function TitlePreviewSection() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleCloseModal = () => {
+    searchParams.delete("movie");
+    setSearchParams(searchParams);
+  };
+
   return (
     <section>
       <div className="relative">
         {/* Close Button */}
-        <button className="bg-border-color absolute top-3.5 right-3.5 z-50 cursor-pointer rounded-full p-1">
+        <button
+          className="bg-border-color absolute top-3.5 right-3.5 z-50 cursor-pointer rounded-full p-1"
+          onClick={handleCloseModal}
+        >
           <CloseIcon fontSize="large" />
         </button>
 
