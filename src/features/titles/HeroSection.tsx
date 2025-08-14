@@ -1,19 +1,25 @@
-import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { useLocation } from "react-router";
+import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
+import { useHeroTitle } from "./hooks/useHeroTitle";
+
 import Overlay from "../../components/ui/Overlay";
 import NetflixShow from "../../components/ui/NetflixShow";
 import HeroTitleMenu from "./HeroTitleMenu";
-import { useLocation } from "react-router";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 
 function HeroSection() {
   const { pathname } = useLocation();
+  const { heroTitle, isLoadingHeroTitle } = useHeroTitle();
+
+  if (isLoadingHeroTitle) return <p>Loading...</p>;
 
   return (
     <section className="mb-64">
       {/* Image */}
       <div className="absolute top-0 left-1/2 -z-10 w-full -translate-x-1/2">
         <img
-          src="https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+          src={`${IMAGE_BASE_URL}/original/${heroTitle?.imageURL}`}
           alt="Poster of the Movie"
           className="h-[800px] w-full object-cover object-top"
         />
@@ -27,12 +33,8 @@ function HeroSection() {
       {/* Content */}
       <div className="max-w-4xl space-y-4 px-4 pt-56">
         <NetflixShow />
-        <h1 className="text-5xl font-extrabold">ALMOST COPS</h1>
-        <p className="max-w-xl text-lg">
-          Demoted to community officer, reckless ex-detective Jack gets
-          partnered up with the eccentric Ramon. The perfect duo to fight
-          crime... with chaos.
-        </p>
+        <h1 className="text-5xl font-extrabold">{heroTitle?.titleName}</h1>
+        <p className="max-w-xl text-lg">{heroTitle?.overview}</p>
         <div className="flex gap-4">
           <button className="flex cursor-pointer items-center rounded bg-white px-10 py-2 text-lg font-semibold text-black hover:bg-gray-200">
             <PlayArrowIcon fontSize="large" />
