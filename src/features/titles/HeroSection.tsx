@@ -7,12 +7,18 @@ import NetflixShow from "../../components/ui/NetflixShow";
 import HeroTitleMenu from "./HeroTitleMenu";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
+import Loader from "../../components/ui/Loader";
 
 function HeroSection() {
   const { pathname } = useLocation();
   const { heroTitle, isLoadingHeroTitle } = useHeroTitle();
 
-  if (isLoadingHeroTitle) return <p>Loading...</p>;
+  if (isLoadingHeroTitle)
+    return (
+      <div className="mb-96">
+        <Loader />
+      </div>
+    );
 
   return (
     <section className="mb-64">
