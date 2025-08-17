@@ -12,7 +12,7 @@ function TitlePreviewSection() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleCloseModal = () => {
-    searchParams.delete("movie");
+    searchParams.delete("title");
     setSearchParams(searchParams);
   };
 
