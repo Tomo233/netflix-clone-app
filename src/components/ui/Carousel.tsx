@@ -13,12 +13,15 @@ type CarouselProps<T> = {
 };
 
 function Carousel<T>({ data, renderItem }: CarouselProps<T>) {
+  const slideCount = data?.length || 0;
+  const slidesToShow = Math.min(slideCount, 5);
+
   return (
     <Swiper
-      loop={true}
+      loop={slideCount >= 5}
+      slidesPerView={slidesToShow}
+      slidesPerGroup={slidesToShow}
       modules={[Navigation]}
-      slidesPerView={5}
-      slidesPerGroup={5}
       navigation // ✅ shows arrows
       pagination={false} // ❌ disables dots
     >
