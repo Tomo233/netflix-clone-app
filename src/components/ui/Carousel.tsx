@@ -15,7 +15,6 @@ type CarouselProps<T> = {
 function Carousel<T>({ data, renderItem }: CarouselProps<T>) {
   return (
     <Swiper
-      className="mb-56"
       loop={true}
       modules={[Navigation]}
       slidesPerView={5}
