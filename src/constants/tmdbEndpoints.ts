@@ -2,41 +2,41 @@ export const TMDB_ENDPOINTS = {
   browse: [
     {
       title: "Trending Now",
-      url: "/trending/all/day",
+      url: "trending/all/day",
     },
     {
       title: "Upcoming",
-      url: "/movie/upcoming",
+      url: "movie/upcoming",
     },
     {
       title: "Popular",
-      url: "/tv/popular",
+      url: "tv/popular",
     },
     {
       title: "Now Playing",
-      url: "/movie/now_playing",
+      url: "movie/now_playing",
     },
     {
       title: "On The Air",
-      url: "/tv/on_the_air",
+      url: "tv/on_the_air",
     },
   ],
   movie: [
     {
       title: "Trending",
-      url: "/trending/movie/day",
+      url: "trending/movie/day",
     },
     {
       title: "Now Playing",
-      url: "/now_playing",
+      url: "now_playing",
     },
     {
       title: "Upcoming Movies",
-      url: "/upcoming",
+      url: "upcoming",
     },
     {
       title: "Top Rated Movies",
-      url: "/top_rated",
+      url: "top_rated",
     },
   ],
   tv: [
@@ -46,19 +46,19 @@ export const TMDB_ENDPOINTS = {
     },
     {
       title: "Popular TV Shows",
-      url: "/popular",
+      url: "popular",
     },
     {
       title: "Airing Today",
-      url: "/airing_today",
+      url: "airing_today",
     },
     {
       title: "On The Air",
-      url: "/on_the_air",
+      url: "on_the_air",
     },
     {
       title: "Top Rated",
-      url: "/top_rated",
+      url: "top_rated",
     },
   ],
 };

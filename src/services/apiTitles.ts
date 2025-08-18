@@ -3,7 +3,7 @@ import type { HeroTitle } from "../types/titles/HeroTitle";
 import type { TMDBHeroTitle } from "../types/tmdb/TMDBTitles";
 
 export const getHeroTitle = async (pathname: string): Promise<HeroTitle> => {
-  const res = await fetch(`${API_URL}/trending/all/day${API_KEY_PARAM}`);
+  const res = await fetch(`${API_URL}trending/all/day${API_KEY_PARAM}`);
 
   const { results } = (await res.json()) as { results: TMDBHeroTitle[] };
 
