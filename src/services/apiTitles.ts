@@ -31,3 +31,31 @@ export const getHeroTitle = async (pathname: string) => {
     overview: title.overview,
   } as HeroTitle;
 };
+
+export const getTitles = async (url: string, location: string) => {
+  try {
+    let fullUrl: string;
+
+    if (location !== "browse" && !url.includes("trending")) {
+      fullUrl = `${API_URL}${location}/${url}${API_KEY_PARAM}`;
+    } else {
+      fullUrl = `${API_URL}${url}${API_KEY_PARAM}`;
+    }
+
+    const res = await fetch(fullUrl);
+
+    const { results } = await res.json();
+
+    return results.map((item) => ({
+      id: item.id,
+      adult: item.adult,
+      titleName:
+        "original_title" in item ? item.original_title : item.original_name,
+      rating: item.vote_average,
+      imageURL: item.backdrop_path,
+      genreIds: item.genre_ids,
+    }));
+  } catch (error: unknown) {
+    console.log(error);
+  }
+};

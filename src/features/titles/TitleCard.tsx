@@ -75,7 +75,7 @@ const movie = {
 const baseUrl = "https://image.tmdb.org/t/p/";
 // const posterPath = "/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg";
 
-function TitleCard() {
+function TitleCard({ title }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -93,14 +93,14 @@ function TitleCard() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <img
-          src={`${baseUrl}/original/${movie.backdrop_path}`}
+          src={`${baseUrl}/original/${title?.imageURL}`}
           className="rounded-md"
           alt="Image Poster"
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-linear-to-t from-black/90 to-transparent" />
         <h3 className="absolute bottom-2 left-1/2 -translate-x-1/2 font-bold tracking-wide">
-          Almost Cops
+          {title.titleName}
         </h3>
       </div>
       {/* Card Menu */}
@@ -134,9 +134,9 @@ function TitleCard() {
             <MediaTag value="HD" />
           </div>
           <ul className="flex justify-between text-sm font-medium">
-            <li>Rousing</li>
-            <li>Action</li>
-            <li>Police Detectives</li>
+            {title.genreIds.map((id) => {
+              return <li>{id}</li>;
+            })}
           </ul>
         </Container>
       </div>
