@@ -1,4 +1,6 @@
 import { useState } from "react";
+import type { Title } from "../../types/titles/Title";
+import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -6,7 +8,7 @@ import Container from "../../components/ui/Container";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 
-function TitleCard({ title }) {
+function TitleCard({ title }: { title: Title }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -24,7 +26,7 @@ function TitleCard({ title }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <img
-          src={`${baseUrl}/original/${title?.imageURL}`}
+          src={`${IMAGE_BASE_URL}/original/${title?.imageURL}`}
           className="rounded-md"
           alt="Image Poster"
           loading="lazy"
