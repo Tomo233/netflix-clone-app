@@ -1,6 +1,7 @@
 import { API_KEY_PARAM, API_URL } from "../constants/tmdbBaseUrls";
+import type { TMDBHeroTitle, TMDBTitle } from "../types/tmdb/TMDBTitles";
 import type { HeroTitle } from "../types/titles/HeroTitle";
-import type { TMDBHeroTitle } from "../types/tmdb/TMDBTitles";
+import type { Title } from "../types/titles/Title";
 
 export const getHeroTitle = async (pathname: string) => {
   const res = await fetch(`${API_URL}trending/all/day${API_KEY_PARAM}`);
@@ -44,7 +45,7 @@ export const getTitles = async (url: string, location: string) => {
 
     const res = await fetch(fullUrl);
 
-    const { results } = await res.json();
+    const { results } = (await res.json()) as { results: TMDBTitle[] };
 
     return results.map((item) => ({
       id: item.id,
@@ -54,7 +55,7 @@ export const getTitles = async (url: string, location: string) => {
       rating: item.vote_average,
       imageURL: item.backdrop_path,
       genreIds: item.genre_ids,
-    }));
+    })) as Title[];
   } catch (error: unknown) {
     console.log(error);
   }

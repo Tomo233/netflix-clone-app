@@ -6,75 +6,6 @@ import Container from "../../components/ui/Container";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 
-const movie = {
-  adult: false,
-  backdrop_path: "/ncEsesgOJDNrTUED89hYbA117wo.jpg",
-  belongs_to_collection: {
-    id: 210,
-    name: "The Matrix Collection",
-    poster_path: "/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
-    backdrop_path: "/54CPwp2v1uW4Xr8RzqV1XJpMqKP.jpg",
-  },
-  budget: 63000000,
-  genres: [
-    {
-      id: 28,
-      name: "Action",
-    },
-    {
-      id: 878,
-      name: "Science Fiction",
-    },
-  ],
-  homepage: "http://www.warnerbros.com/matrix",
-  id: 603,
-  imdb_id: "tt0133093",
-  original_language: "en",
-  original_title: "The Matrix",
-  overview:
-    "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
-  popularity: 60.441,
-  poster_path: "/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
-  production_companies: [
-    {
-      id: 79,
-      name: "Village Roadshow Pictures",
-      logo_path: "/ekpNvTXm9gEfRaz2gP1G8E7AaeM.png",
-      origin_country: "AU",
-    },
-    {
-      id: 9,
-      name: "New Line Cinema",
-      logo_path: "/tmU7GeKVybMWFButWEGl2M4GeiP.png",
-      origin_country: "US",
-    },
-  ],
-  production_countries: [
-    {
-      iso_3166_1: "US",
-      name: "United States of America",
-    },
-  ],
-  release_date: "1999-03-30",
-  revenue: 463517383,
-  runtime: 136,
-  spoken_languages: [
-    {
-      iso_639_1: "en",
-      name: "English",
-    },
-  ],
-  status: "Released",
-  tagline: "Welcome to the Real World.",
-  title: "The Matrix",
-  video: false,
-  vote_average: 8.7,
-  vote_count: 22537,
-};
-
-const baseUrl = "https://image.tmdb.org/t/p/";
-// const posterPath = "/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg";
-
 function TitleCard({ title }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -96,6 +27,7 @@ function TitleCard({ title }) {
           src={`${baseUrl}/original/${title?.imageURL}`}
           className="rounded-md"
           alt="Image Poster"
+          loading="lazy"
         />
         {/* Overlay */}
         <div className="absolute inset-0 bg-linear-to-t from-black/90 to-transparent" />

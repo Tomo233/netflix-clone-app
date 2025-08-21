@@ -7,7 +7,7 @@ export const useTitles = (url: string) => {
 
   const location = pathname.slice(1);
   const { data: titles, isLoading: isLoadingTitles } = useQuery({
-    queryKey: [location, url],
+    queryKey: [url],
     queryFn: () => getTitles(url, location),
   });
 
