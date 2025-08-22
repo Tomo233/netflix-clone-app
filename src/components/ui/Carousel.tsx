@@ -8,11 +8,11 @@ import "swiper/css/navigation";
 import type { ReactNode } from "react";
 
 type CarouselProps<T> = {
-  data: T[];
+  data?: T[];
   renderItem: (item: T, index: number) => ReactNode;
 };
 
-function Carousel<T>({ data, renderItem }: CarouselProps<T>) {
+function Carousel<T>({ data = [], renderItem }: CarouselProps<T>) {
   const slideCount = data?.length || 0;
   const slidesToShow = Math.min(slideCount, 5);
 
