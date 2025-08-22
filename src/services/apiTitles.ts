@@ -55,6 +55,7 @@ export const getTitles = async (url: string, location: string) => {
       rating: item.vote_average,
       imageURL: item.backdrop_path,
       genreIds: item.genre_ids,
+      mediaType: "original_title" in item ? "movie" : "tv",
     })) as Title[];
   } catch (error: unknown) {
     console.log(error);

@@ -5,4 +5,5 @@ export type Title = {
   genreIds: number[];
   rating: number;
   imageURL: string;
+  mediaType: "movie" | "tv";
 };

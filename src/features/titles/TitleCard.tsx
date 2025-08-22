@@ -7,9 +7,11 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Container from "../../components/ui/Container";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
+import { getGenresByIds } from "../../utils/helpers";
 
 function TitleCard({ title }: { title: Title }) {
   const [isHovered, setIsHovered] = useState(false);
+  const genres = getGenresByIds(title.genreIds, title.mediaType);
 
   return (
     <div
@@ -67,9 +69,9 @@ function TitleCard({ title }: { title: Title }) {
             <Rating value={8.1} />
             <MediaTag value="HD" />
           </div>
-          <ul className="flex justify-between text-sm font-medium">
-            {title.genreIds.map((id) => {
-              return <li>{id}</li>;
+          <ul className="flex flex-wrap gap-3 text-sm font-medium">
+            {genres.map((genre) => {
+              return genre?.name && <li key={genre.id}>{genre.name}</li>;
             })}
           </ul>
         </Container>
