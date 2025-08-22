@@ -5,7 +5,7 @@ import TitleCard from "./TitleCard";
 
 function TitleCarousel({ url }: { url: string }) {
   const { titles, isLoadingTitles } = useTitles(url);
-  console.log(url);
+
   if (isLoadingTitles) return <Loader />;
 
   return (

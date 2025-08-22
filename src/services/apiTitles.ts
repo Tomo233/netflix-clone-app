@@ -26,6 +26,7 @@ export const getHeroTitle = async (pathname: string) => {
   }
 
   return {
+    id: title.id,
     titleName:
       "original_title" in title ? title.original_title : title.original_name,
     imageURL: title.backdrop_path,

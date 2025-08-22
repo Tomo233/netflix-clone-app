@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 import { useHeroTitle } from "./hooks/useHeroTitle";
 
@@ -12,7 +12,7 @@ import Loader from "../../components/ui/Loader";
 function HeroSection() {
   const { pathname } = useLocation();
   const { heroTitle, isLoadingHeroTitle } = useHeroTitle();
-
+  const navigate = useNavigate();
   if (isLoadingHeroTitle)
     return (
       <div className="mb-96">
@@ -46,7 +46,12 @@ function HeroSection() {
             <PlayArrowIcon fontSize="large" />
             Play
           </button>
-          <button className="flex cursor-pointer items-center gap-2 rounded border border-white bg-[#6D6D6E]/70 px-8 py-2 text-lg hover:bg-[#6D6D6E]/80">
+          <button
+            className="flex cursor-pointer items-center gap-2 rounded border border-white bg-[#6D6D6E]/70 px-8 py-2 text-lg hover:bg-[#6D6D6E]/80"
+            onClick={() => {
+              navigate(`?title=${heroTitle?.id}`);
+            }}
+          >
             <InfoOutlineIcon fontSize="large" />
             More Info
           </button>
