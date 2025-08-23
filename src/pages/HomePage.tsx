@@ -4,7 +4,7 @@ import TitleModal from "../features/titles/TitleModal";
 
 function HomePage() {
   return (
-    <div className="mb-96">
+    <div>
       <HeroSection />
       <TitleModal />
       <CategoryCarousels />

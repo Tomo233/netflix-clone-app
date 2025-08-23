@@ -8,10 +8,12 @@ import Container from "../../components/ui/Container";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 import { getGenresByIds } from "../../utils/helpers";
+import { useNavigate } from "react-router";
 
 function TitleCard({ title }: { title: Title }) {
   const [isHovered, setIsHovered] = useState(false);
   const genres = getGenresByIds(title.genreIds, title.mediaType);
+  const navigate = useNavigate();
 
   return (
     <div
@@ -58,15 +60,20 @@ function TitleCard({ title }: { title: Title }) {
               />
               <AddCircleOutlineIcon className="h-12! w-12! text-[#a3a3a3]" />
             </div>
-            <ExpandCircleDownIcon
-              fontSize="large"
-              className="h-12! w-12! text-[#a3a3a3]"
-            />
+            <button
+              className="cursor-pointer"
+              onClick={() => navigate(`?title=${title.id}`)}
+            >
+              <ExpandCircleDownIcon
+                fontSize="large"
+                className="h-12! w-12! text-[#a3a3a3]"
+              />
+            </button>
           </div>
 
           <div className="flex items-center gap-3 py-2">
-            <MediaTag value="16+" />
-            <Rating value={8.1} />
+            <MediaTag value={title.adult ? "16+" : "13+"} />
+            <Rating value={title.rating} />
             <MediaTag value="HD" />
           </div>
           <ul className="flex flex-wrap gap-3 text-sm font-medium">
