@@ -31,6 +31,7 @@ export const getHeroTitle = async (pathname: string) => {
       "original_title" in title ? title.original_title : title.original_name,
     imageURL: title.backdrop_path,
     overview: title.overview,
+    mediaType: title.media_type,
   } as HeroTitle;
 };
 

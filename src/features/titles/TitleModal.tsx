@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router";
 function TitleModal() {
   const [searchParams] = useSearchParams();
 
-  const isOpened = Boolean(searchParams.get("title"));
+  const isOpened = Boolean(searchParams.get("movie") || searchParams.get("tv"));
 
   return (
     <BasicModal width={1000} open={isOpened}>

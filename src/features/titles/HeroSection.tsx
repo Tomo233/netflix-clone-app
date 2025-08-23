@@ -19,7 +19,6 @@ function HeroSection() {
         <Loader />
       </div>
     );
-
   return (
     <section className="mb-64">
       {/* Image */}
@@ -49,7 +48,9 @@ function HeroSection() {
           <button
             className="flex cursor-pointer items-center gap-2 rounded border border-white bg-[#6D6D6E]/70 px-8 py-2 text-lg hover:bg-[#6D6D6E]/80"
             onClick={() => {
-              navigate(`?title=${heroTitle?.id}`);
+              navigate(
+                `?${heroTitle?.mediaType === "movie" ? "movie" : "tv"}=${heroTitle?.id}`,
+              );
             }}
           >
             <InfoOutlineIcon fontSize="large" />

@@ -14,7 +14,6 @@ function TitleCard({ title }: { title: Title }) {
   const [isHovered, setIsHovered] = useState(false);
   const genres = getGenresByIds(title.genreIds, title.mediaType);
   const navigate = useNavigate();
-
   return (
     <div
       className={`w-72 pb-3 transition-transform duration-300 ${
@@ -62,7 +61,11 @@ function TitleCard({ title }: { title: Title }) {
             </div>
             <button
               className="cursor-pointer"
-              onClick={() => navigate(`?title=${title.id}`)}
+              onClick={() =>
+                navigate(
+                  `?${title.mediaType === "movie" ? "movie" : "tv"}=${title.id}`,
+                )
+              }
             >
               <ExpandCircleDownIcon
                 fontSize="large"
