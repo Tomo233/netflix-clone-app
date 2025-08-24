@@ -1,9 +1,9 @@
 import StarIcon from "@mui/icons-material/Star";
 
-function Rating({ value }: { value: string | number }) {
+function Rating({ value }: { value: number }) {
   return (
     <span className="flex items-center gap-1">
-      {value}
+      {value.toFixed(1)}
       <StarIcon fontSize="small" />
     </span>
   );
