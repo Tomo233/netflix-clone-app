@@ -7,18 +7,15 @@ import NetflixShow from "../../components/ui/NetflixShow";
 import HeroTitleMenu from "./HeroTitleMenu";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
-import Loader from "../../components/ui/Loader";
+import SkeletonLoader from "../../components/ui/SkeletonLoader";
 
 function HeroSection() {
   const { pathname } = useLocation();
   const { heroTitle, isLoadingHeroTitle } = useHeroTitle();
   const navigate = useNavigate();
-  if (isLoadingHeroTitle)
-    return (
-      <div className="mb-96">
-        <Loader />
-      </div>
-    );
+
+  if (!isLoadingHeroTitle) return <SkeletonLoader />;
+
   return (
     <section className="mb-64">
       {/* Image */}

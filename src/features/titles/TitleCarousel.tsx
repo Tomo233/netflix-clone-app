@@ -1,12 +1,12 @@
 import Carousel from "../../components/ui/Carousel";
-import Loader from "../../components/ui/Loader";
 import { useTitles } from "./hooks/useTitles";
 import TitleCard from "./TitleCard";
+import ProgressLoader from "../../components/ui/ProgressLoader";
 
 function TitleCarousel({ url }: { url: string }) {
   const { titles, isLoadingTitles } = useTitles(url);
 
-  if (isLoadingTitles) return <Loader />;
+  if (!isLoadingTitles) return <ProgressLoader />;
 
   return (
     <>
