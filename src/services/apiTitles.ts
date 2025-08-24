@@ -1,7 +1,8 @@
 import { API_KEY_PARAM, API_URL } from "../constants/tmdbBaseUrls";
-import type { TMDBHeroTitle, TMDBTitle } from "../types/tmdb/TMDBTitles";
 import type { HeroTitle } from "../types/titles/HeroTitle";
 import type { Title } from "../types/titles/Title";
+import type { TMDBHeroTitle } from "../types/tmdb/entities/TMDBHeroTitle";
+import type { TMDBTitle } from "../types/tmdb/entities/TMDBTitle";
 
 export const getHeroTitle = async (pathname: string) => {
   const res = await fetch(`${API_URL}trending/all/day${API_KEY_PARAM}`);
