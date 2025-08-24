@@ -14,7 +14,7 @@ function HeroSection() {
   const { heroTitle, isLoadingHeroTitle } = useHeroTitle();
   const navigate = useNavigate();
 
-  if (!isLoadingHeroTitle) return <SkeletonLoader />;
+  if (isLoadingHeroTitle) return <SkeletonLoader />;
 
   return (
     <section className="mb-64">

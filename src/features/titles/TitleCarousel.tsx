@@ -6,7 +6,7 @@ import ProgressLoader from "../../components/ui/ProgressLoader";
 function TitleCarousel({ url }: { url: string }) {
   const { titles, isLoadingTitles } = useTitles(url);
 
-  if (!isLoadingTitles) return <ProgressLoader />;
+  if (isLoadingTitles) return <ProgressLoader />;
 
   return (
     <>

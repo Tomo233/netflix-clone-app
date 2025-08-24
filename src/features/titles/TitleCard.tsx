@@ -7,7 +7,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Container from "../../components/ui/Container";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
-import { getGenresByIds } from "../../utils/helpers";
+import { getGenresByIds } from "../../utils/getGenresByIds";
 import { useNavigate } from "react-router";
 
 function TitleCard({ title }: { title: Title }) {
