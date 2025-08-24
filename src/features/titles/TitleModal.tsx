@@ -5,13 +5,19 @@ import MoreLikeThis from "./MoreLikeThis";
 import { useSearchParams } from "react-router";
 
 function TitleModal() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleCloseModal = () => {
+    const key = searchParams.has("movie") ? "movie" : "tv";
+    searchParams.delete(key);
+    setSearchParams(searchParams);
+  };
 
   const isOpened = Boolean(searchParams.get("movie") || searchParams.get("tv"));
 
   return (
-    <BasicModal width={1000} open={isOpened}>
-      <TitlePreviewSection />
+    <BasicModal handleClose={handleCloseModal} width={1000} open={isOpened}>
+      <TitlePreviewSection handleClose={handleCloseModal} />
       <div className="px-10">
         <EpisodesSection />
         <MoreLikeThis />

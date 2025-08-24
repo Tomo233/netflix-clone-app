@@ -4,12 +4,14 @@ import Modal from "@mui/material/Modal";
 
 type BasicModalProps = {
   open: boolean;
+  handleClose: () => void;
   children: ReactNode;
   width?: number;
 };
 
 export default function BasicModal({
   open,
+  handleClose,
   children,
   width = 400,
 }: BasicModalProps) {
@@ -30,6 +32,7 @@ export default function BasicModal({
   return (
     <Modal
       open={open}
+      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
