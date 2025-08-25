@@ -9,6 +9,7 @@ const getTransformedData = <T extends TMDBBaseTitle>(item: T) => {
       "original_title" in item ? item.original_title : item.original_name,
     rating: item.vote_average,
     imageURL: item.backdrop_path,
+    mediaType: item.media_type,
   };
 };
 

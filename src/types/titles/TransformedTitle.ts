@@ -4,4 +4,5 @@ export type TransformedTitle = {
   titleName: string;
   rating: number;
   imageURL: string;
+  mediaType: "movie" | "tv";
 };

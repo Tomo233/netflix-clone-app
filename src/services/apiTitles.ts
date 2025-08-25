@@ -55,7 +55,6 @@ export const getTitles = async (url: string, location: string) => {
   const { results } = (await res.json()) as { results: TMDBTitle[] };
 
   const transformedData = transfromTitleData(results);
-
   return transformedData.map((item, index) => ({
     ...item,
     genreIds: results[index].genre_ids,
@@ -71,7 +70,6 @@ export const getTitleDetails = async (title: string, id: string | null) => {
     throw new Error("Something went wrong while fetching title details...");
 
   const data = (await res.json()) as TMDBTitleDetails;
-
   const transformedData = transfromTitleData(data);
 
   return {
@@ -83,6 +81,9 @@ export const getTitleDetails = async (title: string, id: string | null) => {
         ? data.production_companies.map((item) => item.name)
         : data.created_by.map((item) => item.name),
     overview: data.overview,
-    releaseYear: data.release_date.split("-")[0],
+    releaseYear:
+      "release_date" in data
+        ? data.release_date.split("-")[0]
+        : data.last_air_date.split("-")[0],
   } as TitleDetails;
 };

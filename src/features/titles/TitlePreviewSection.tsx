@@ -14,14 +14,21 @@ import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
   const { titleDetails, isLoadingTitleDetails } = useTitleDetails();
 
-  if (isLoadingTitleDetails) return <ProgressLoader />;
+  if (isLoadingTitleDetails)
+    return (
+      <div className="pt-10">
+        <ProgressLoader />
+      </div>
+    );
 
-  const genres = getGenresByIds(
-    titleDetails?.genreIds,
-    titleDetails?.mediaType,
-  );
+  if (!titleDetails)
+    return (
+      <p className="py-10 text-center text-2xl font-medium tracking-wide uppercase">
+        No Data To Display...
+      </p>
+    );
 
-  console.log(titleDetails);
+  const genres = getGenresByIds(titleDetails.genreIds, titleDetails.mediaType);
 
   return (
     <section>
@@ -47,7 +54,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
           <NetflixShow />
 
           <h2 className="mb-3 text-5xl font-extrabold tracking-wide">
-            {titleDetails?.titleName}
+            {titleDetails.titleName}
           </h2>
           <div className="flex gap-3">
             <button className="flex cursor-pointer items-center rounded bg-white px-10 py-2 text-lg font-semibold text-black hover:bg-gray-200">
@@ -66,14 +73,14 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
         <div className="flex justify-between gap-10 pt-5">
           <div className="text-sm">
             <div className="flex gap-2 pb-1">
-              <p>{titleDetails?.releaseYear}</p>
-              <p>{titleDetails?.length} min</p>
+              <p>{titleDetails.releaseYear}</p>
+              <p>{titleDetails.length} min</p>
               <MediaTag value="HD" />
             </div>
 
             <div className="flex items-center gap-2">
-              <MediaTag value={titleDetails?.adult ? "16+" : "13+"} />
-              <Rating value={titleDetails?.rating} />
+              <MediaTag value={titleDetails.adult ? "16+" : "13+"} />
+              <Rating value={titleDetails.rating} />
               <MediaTag value="EN" />
             </div>
           </div>
@@ -82,7 +89,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
             <p className="text-secondary-text-color font-medium tracking-wide">
               Productions :{" "}
               {titleDetails?.creators.map((creator: string, i: number) => (
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-white" key={i}>
                   {creator}
                   {i !== titleDetails.creators.length - 1 && ", "}
                 </span>
@@ -92,7 +99,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
             <p className="text-secondary-text-color mt-2 font-medium tracking-wide">
               Genres :{" "}
               {genres.map((genre, i) => (
-                <span className="font-semibold text-white" key={genre?.id}>
+                <span className="font-semibold text-white" key={i}>
                   {genre?.name}
                   {i !== genres.length - 1 && ", "}
                 </span>
@@ -102,7 +109,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
         </div>
 
         <h3 className="pt-3 pb-1 text-xl font-semibold">Overview : </h3>
-        <p className="max-w-3/4">{titleDetails?.overview}</p>
+        <p className="max-w-3/4">{titleDetails.overview}</p>
       </div>
     </section>
   );
