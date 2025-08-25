@@ -64,3 +64,33 @@ export const getTitles = async (url: string, location: string) => {
     console.log(error);
   }
 };
+
+export const getTitleDetails = async (title: string, id: string | null) => {
+  try {
+    if (!id) return;
+    const res = await fetch(`${API_URL}${title}/${id}${API_KEY_PARAM}`);
+    const data = await res.json();
+
+    const finalData = {
+      id: data.id,
+      adult: data.adult,
+      titleName:
+        "original_title" in data ? data.original_title : data.original_name,
+      rating: data.vote_average,
+      imageURL: data.backdrop_path,
+      mediaType: "original_title" in data ? "movie" : "tv",
+      genreIds: data.genres.map((item: { id: number }) => item.id),
+      length: "runtime" in data ? data.runtime : data.number_of_seasons,
+      creators:
+        "production_companies" in data
+          ? data.production_companies.map((item: { name: string }) => item.name)
+          : data.created_by.map((item: { name: string }) => item.name),
+      overview: data.overview,
+      releaseYear: data.release_date.split("-")[0],
+    };
+
+    return finalData;
+  } catch (error: unknown) {
+    console.log(error);
+  }
+};

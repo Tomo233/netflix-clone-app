@@ -6,8 +6,23 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 import NetflixShow from "../../components/ui/NetflixShow";
+import { useTitleDetails } from "./hooks/useTitleDetails";
+import ProgressLoader from "../../components/ui/ProgressLoader";
+import { getGenresByIds } from "../../utils/getGenresByIds";
+import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 
 function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
+  const { titleDetails, isLoadingTitleDetails } = useTitleDetails();
+
+  if (isLoadingTitleDetails) return <ProgressLoader />;
+
+  const genres = getGenresByIds(
+    titleDetails?.genreIds,
+    titleDetails?.mediaType,
+  );
+
+  console.log(titleDetails);
+
   return (
     <section>
       <div className="relative">
@@ -20,7 +35,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
         </button>
 
         <img
-          src="https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg"
+          src={`${IMAGE_BASE_URL}original/${titleDetails?.imageURL}`}
           alt="Poster of the Movie"
           className="h-[500px] w-full object-cover object-top"
         />
@@ -32,7 +47,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
           <NetflixShow />
 
           <h2 className="mb-3 text-5xl font-extrabold tracking-wide">
-            ALMOST COPS
+            {titleDetails?.titleName}
           </h2>
           <div className="flex gap-3">
             <button className="flex cursor-pointer items-center rounded bg-white px-10 py-2 text-lg font-semibold text-black hover:bg-gray-200">
@@ -51,14 +66,14 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
         <div className="flex justify-between gap-10 pt-5">
           <div className="text-sm">
             <div className="flex gap-2 pb-1">
-              <p>2025</p>
-              <p>1h 37m</p>
+              <p>{titleDetails?.releaseYear}</p>
+              <p>{titleDetails?.length} min</p>
               <MediaTag value="HD" />
             </div>
 
             <div className="flex items-center gap-2">
-              <MediaTag value="16+" />
-              <Rating value={8.1} />
+              <MediaTag value={titleDetails?.adult ? "16+" : "13+"} />
+              <Rating value={titleDetails?.rating} />
               <MediaTag value="EN" />
             </div>
           </div>
@@ -66,27 +81,28 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
           <div className="max-w-70 text-sm">
             <p className="text-secondary-text-color font-medium tracking-wide">
               Productions :{" "}
-              <span className="font-semibold text-white">
-                Sony Pictures Television,High Bridge Productions,Gran Via
-                Productions
-              </span>
+              {titleDetails?.creators.map((creator: string, i: number) => (
+                <span className="font-semibold text-white">
+                  {creator}
+                  {i !== titleDetails.creators.length - 1 && ", "}
+                </span>
+              ))}
             </p>
 
             <p className="text-secondary-text-color mt-2 font-medium tracking-wide">
               Genres :{" "}
-              <span className="font-semibold text-white">Action,Comedy</span>
+              {genres.map((genre, i) => (
+                <span className="font-semibold text-white" key={genre?.id}>
+                  {genre?.name}
+                  {i !== genres.length - 1 && ", "}
+                </span>
+              ))}
             </p>
           </div>
         </div>
 
         <h3 className="pt-3 pb-1 text-xl font-semibold">Overview : </h3>
-        <p className="max-w-3/4">
-          On the rugged isle of Berk, where Vikings and dragons have been bitter
-          enemies for generations, Hiccup stands apart, defying centuries of
-          tradition when he befriends Toothless, a feared Night Fury dragon.
-          Their unlikely bond reveals the true nature of dragons, challenging
-          the very foundations of Viking society.
-        </p>
+        <p className="max-w-3/4">{titleDetails?.overview}</p>
       </div>
     </section>
   );
