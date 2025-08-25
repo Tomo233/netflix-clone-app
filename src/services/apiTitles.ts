@@ -5,6 +5,7 @@ import type { TitleDetails } from "../types/titles/TitleDetails";
 import type { TMDBHeroTitle } from "../types/tmdb/entities/TMDBHeroTitle";
 import type { TMDBTitle } from "../types/tmdb/entities/TMDBTitle";
 import type { TMDBTitleDetails } from "../types/tmdb/entities/TMDBTitleDetails";
+import { transfromTitleData } from "../utils/transformTitleData";
 
 export const getHeroTitle = async (pathname: string) => {
   const res = await fetch(`${API_URL}trending/all/day${API_KEY_PARAM}`);
@@ -39,60 +40,49 @@ export const getHeroTitle = async (pathname: string) => {
 };
 
 export const getTitles = async (url: string, location: string) => {
-  try {
-    let fullUrl: string;
+  let fullUrl: string;
 
-    if (location !== "browse" && !url.includes("trending")) {
-      fullUrl = `${API_URL}${location}/${url}${API_KEY_PARAM}`;
-    } else {
-      fullUrl = `${API_URL}${url}${API_KEY_PARAM}`;
-    }
-
-    const res = await fetch(fullUrl);
-
-    const { results } = (await res.json()) as { results: TMDBTitle[] };
-
-    return results.map((item) => ({
-      id: item.id,
-      adult: item.adult,
-      titleName:
-        "original_title" in item ? item.original_title : item.original_name,
-      rating: item.vote_average,
-      imageURL: item.backdrop_path,
-      genreIds: item.genre_ids,
-      mediaType: "original_title" in item ? "movie" : "tv",
-    })) as Title[];
-  } catch (error: unknown) {
-    console.log(error);
+  if (location !== "browse" && !url.includes("trending")) {
+    fullUrl = `${API_URL}${location}/${url}${API_KEY_PARAM}`;
+  } else {
+    fullUrl = `${API_URL}${url}${API_KEY_PARAM}`;
   }
+
+  const res = await fetch(fullUrl);
+
+  if (!res.ok) throw new Error("Something went wrong while fetching titles...");
+
+  const { results } = (await res.json()) as { results: TMDBTitle[] };
+
+  const transformedData = transfromTitleData(results);
+
+  return transformedData.map((item, index) => ({
+    ...item,
+    genreIds: results[index].genre_ids,
+  })) as Title[];
 };
 
 export const getTitleDetails = async (title: string, id: string | null) => {
-  try {
-    if (!id) return;
-    const res = await fetch(`${API_URL}${title}/${id}${API_KEY_PARAM}`);
-    const data = (await res.json()) as TMDBTitleDetails;
+  if (!id) return;
 
-    const finalData: TitleDetails = {
-      id: data.id,
-      adult: data.adult,
-      titleName:
-        "original_title" in data ? data.original_title : data.original_name,
-      rating: data.vote_average,
-      imageURL: data.backdrop_path,
-      mediaType: "original_title" in data ? "movie" : "tv",
-      genreIds: data.genres.map((item: { id: number }) => item.id),
-      length: "runtime" in data ? data.runtime : data.number_of_seasons,
-      creators:
-        "production_companies" in data
-          ? data.production_companies.map((item: { name: string }) => item.name)
-          : data.created_by.map((item: { name: string }) => item.name),
-      overview: data.overview,
-      releaseYear: data.release_date.split("-")[0],
-    };
+  const res = await fetch(`${API_URL}${title}/${id}${API_KEY_PARAM}`);
 
-    return finalData;
-  } catch (error: unknown) {
-    console.log(error);
-  }
+  if (!res.ok)
+    throw new Error("Something went wrong while fetching title details...");
+
+  const data = (await res.json()) as TMDBTitleDetails;
+
+  const transformedData = transfromTitleData(data);
+
+  return {
+    ...transformedData,
+    genreIds: data.genres.map((item) => item.id),
+    length: "runtime" in data ? data.runtime : data.number_of_seasons,
+    creators:
+      "production_companies" in data
+        ? data.production_companies.map((item) => item.name)
+        : data.created_by.map((item) => item.name),
+    overview: data.overview,
+    releaseYear: data.release_date.split("-")[0],
+  } as TitleDetails;
 };
