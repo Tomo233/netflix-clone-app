@@ -1,10 +1,12 @@
 import { API_KEY_PARAM, API_URL } from "../constants/tmdbBaseUrls";
+import type { Episode } from "../types/titles/Episode";
 import type { HeroTitle } from "../types/titles/HeroTitle";
 import type { Title } from "../types/titles/Title";
 import type { TitleDetails } from "../types/titles/TitleDetails";
 import type { TMDBHeroTitle } from "../types/tmdb/entities/TMDBHeroTitle";
 import type { TMDBTitle } from "../types/tmdb/entities/TMDBTitle";
 import type { TMDBTitleDetails } from "../types/tmdb/entities/TMDBTitleDetails";
+import type { TMDBTVSeasonInfo } from "../types/tmdb/tv/TMDBTVSeasonInfo";
 import { fetchClient } from "../utils/fetchClient";
 import { transfromTitleData } from "../utils/transformTitleData";
 
@@ -77,4 +79,29 @@ export const getTitleDetails = async (title: string, id: string | null) => {
         ? data.release_date.split("-")[0]
         : data.last_air_date.split("-")[0],
   } as TitleDetails;
+};
+
+export const getEpisodesOveview = async (
+  seriesId: string | null,
+  seasonNumber: string | null,
+) => {
+  if (!seriesId || !seasonNumber) return;
+
+  const data = await fetchClient<TMDBTVSeasonInfo>(
+    `${API_URL}tv/${seriesId}/season/${seasonNumber}${API_KEY_PARAM}`,
+  );
+
+  const episodesOverview: Episode[] = data.episodes
+    .filter((episode) => episode.still_path)
+    .map((episode) => {
+      return {
+        id: episode.id,
+        episodeName: episode.name,
+        overview: episode.overview,
+        length: episode.runtime,
+        episodeNumber: episode.episode_number,
+        imageURL: episode.still_path,
+      };
+    });
+  return episodesOverview;
 };

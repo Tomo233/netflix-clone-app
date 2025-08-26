@@ -19,7 +19,7 @@ function TitleModal() {
     <BasicModal handleClose={handleCloseModal} width={1000} open={isOpened}>
       <TitlePreviewSection handleClose={handleCloseModal} />
       <div className="px-10">
-        <EpisodesSection />
+        {searchParams.has("tv") && <EpisodesSection />}
         <MoreLikeThis />
       </div>
     </BasicModal>
