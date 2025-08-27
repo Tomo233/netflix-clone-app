@@ -85,10 +85,10 @@ export const getEpisodesOveview = async (
   seriesId: string | null,
   seasonNumber: string | null,
 ) => {
-  if (!seriesId || !seasonNumber) return;
+  if (!seriesId) return;
 
   const data = await fetchClient<TMDBTVSeasonInfo>(
-    `${API_URL}tv/${seriesId}/season/${seasonNumber}${API_KEY_PARAM}`,
+    `${API_URL}tv/${seriesId}/season/${seasonNumber || 1}${API_KEY_PARAM}`,
   );
 
   const episodesOverview: Episode[] = data.episodes

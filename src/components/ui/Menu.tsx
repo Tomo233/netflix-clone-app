@@ -7,17 +7,27 @@ import {
   Select,
 } from "@mui/material";
 import type { SelectChangeEvent } from "@mui/material/Select";
+import { useSearchParams } from "react-router";
 
 type MenuProps = {
   data: string[];
+  paramName: string;
   grid?: boolean;
 };
 
-function Menu({ data, grid = false }: MenuProps) {
-  const [age, setAge] = useState(data[0]);
+function Menu({ data, grid = false, paramName }: MenuProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [value, setValue] = useState(() => {
+    const paramValue = searchParams.get(paramName);
+    return data.find((el) => el.includes(paramValue ?? "")) ?? data[0];
+  });
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+    setValue(event.target.value);
+    const paramValue = event.target.value.split(" ")[1];
+    searchParams.set(paramName, paramValue);
+    setSearchParams(searchParams);
   };
 
   const columnCount =
@@ -44,7 +54,7 @@ function Menu({ data, grid = false }: MenuProps) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
+          value={value}
           displayEmpty
           input={<OutlinedInput notched={false} />}
           label="Genre"

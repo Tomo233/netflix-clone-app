@@ -11,7 +11,10 @@ function EpisodesSection() {
   if (isLoadingEpisodesOverview || isLoadingNumberOfSeasons)
     return <ProgressLoader />;
 
-  console.log(numberOfSeasons);
+  const data = Array.from(
+    { length: numberOfSeasons! },
+    (_, index) => `Season ${index + 1}`,
+  );
 
   return (
     <section className="pt-3">
@@ -21,7 +24,7 @@ function EpisodesSection() {
           <h3 className="pt-3 text-2xl font-semibold">Episodes</h3>
           <p className="pt-1 text-sm font-medium tracking-wider">Season 1 :</p>
         </div>
-        <Menu data={["Season1", "Season2"]} />
+        <Menu data={data} paramName="season" />
       </div>
 
       {/* Main Content */}
