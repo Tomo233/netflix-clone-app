@@ -2,11 +2,16 @@ import Menu from "../../components/ui/Menu";
 import ProgressLoader from "../../components/ui/ProgressLoader";
 import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 import { useEpisodes } from "./hooks/useEpisodes";
+import { useNumberOfSeasons } from "./hooks/useNumberOfSeasons";
 
 function EpisodesSection() {
   const { episodesOverview, isLoadingEpisodesOverview } = useEpisodes();
+  const { numberOfSeasons, isLoadingNumberOfSeasons } = useNumberOfSeasons();
 
-  if (isLoadingEpisodesOverview) return <ProgressLoader />;
+  if (isLoadingEpisodesOverview || isLoadingNumberOfSeasons)
+    return <ProgressLoader />;
+
+  console.log(numberOfSeasons);
 
   return (
     <section className="pt-3">

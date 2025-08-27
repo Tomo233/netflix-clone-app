@@ -105,3 +105,13 @@ export const getEpisodesOveview = async (
     });
   return episodesOverview;
 };
+
+export const getNumberOfSeasons = async (id: string | null) => {
+  if (!id) return;
+
+  const data = await fetchClient<{ number_of_seasons: number }>(
+    `${API_URL}tv/${id}${API_KEY_PARAM}`,
+  );
+
+  return data.number_of_seasons;
+};
