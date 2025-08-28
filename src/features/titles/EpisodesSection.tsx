@@ -22,11 +22,7 @@ function EpisodesSection() {
     { length: numberOfSeasons! },
     (_, index) => `Season ${index + 1}`,
   );
-  console.log(data);
 
-  const dataToMap =
-    data?.pageParams.at(-1) === 0 ? data.pages.slice(0, 1) : data?.pages;
-  console.log(data);
   return (
     <section className="pt-3">
       {/* Heading and Menu */}
@@ -40,7 +36,7 @@ function EpisodesSection() {
 
       {/* Main Content */}
       <div className="grid pb-10">
-        {dataToMap?.map((page) => {
+        {data?.pages?.map((page) => {
           return page?.episodesOverview?.map((episode) => (
             <div
               className="border-border-color flex items-center border-b py-5"

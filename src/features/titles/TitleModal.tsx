@@ -8,9 +8,7 @@ function TitleModal() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleCloseModal = () => {
-    const key = searchParams.has("movie") ? "movie" : "tv";
-    searchParams.delete(key);
-    setSearchParams(searchParams);
+    setSearchParams({});
   };
 
   const isOpened = Boolean(searchParams.get("movie") || searchParams.get("tv"));
