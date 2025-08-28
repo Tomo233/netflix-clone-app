@@ -3,19 +3,30 @@ import ProgressLoader from "../../components/ui/ProgressLoader";
 import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 import { useEpisodes } from "./hooks/useEpisodes";
 import { useNumberOfSeasons } from "./hooks/useNumberOfSeasons";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 
 function EpisodesSection() {
-  const { episodesOverview, isLoadingEpisodesOverview } = useEpisodes();
+  const {
+    data,
+    isLoadingEpisodesOverview,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useEpisodes();
   const { numberOfSeasons, isLoadingNumberOfSeasons } = useNumberOfSeasons();
 
   if (isLoadingEpisodesOverview || isLoadingNumberOfSeasons)
     return <ProgressLoader />;
 
-  const data = Array.from(
+  const menuData = Array.from(
     { length: numberOfSeasons! },
     (_, index) => `Season ${index + 1}`,
   );
+  console.log(data);
 
+  const dataToMap =
+    data?.pageParams.at(-1) === 0 ? data.pages.slice(0, 1) : data?.pages;
+  console.log(data);
   return (
     <section className="pt-3">
       {/* Heading and Menu */}
@@ -24,13 +35,13 @@ function EpisodesSection() {
           <h3 className="pt-3 text-2xl font-semibold">Episodes</h3>
           <p className="pt-1 text-sm font-medium tracking-wider">Season 1 :</p>
         </div>
-        <Menu data={data} paramName="season" />
+        <Menu data={menuData} paramName="season" />
       </div>
 
       {/* Main Content */}
       <div className="grid pb-10">
-        {episodesOverview?.map((episode) => {
-          return (
+        {dataToMap?.map((page) => {
+          return page?.episodesOverview?.map((episode) => (
             <div
               className="border-border-color flex items-center border-b py-5"
               key={episode.id}
@@ -55,8 +66,25 @@ function EpisodesSection() {
                 </div>
               </div>
             </div>
-          );
+          ));
         })}
+
+        <button
+          onClick={() => fetchNextPage()}
+          disabled={isFetchingNextPage}
+          className="cursor-pointer pt-3 text-lg tracking-wide"
+        >
+          {isFetchingNextPage ? (
+            "Loading"
+          ) : hasNextPage ? (
+            <ExpandCircleDownIcon
+              fontSize="large"
+              className="h-12! w-12! text-[#a3a3a3]"
+            />
+          ) : (
+            "Nothing More To Load..."
+          )}
+        </button>
       </div>
     </section>
   );

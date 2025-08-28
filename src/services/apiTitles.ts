@@ -81,29 +81,37 @@ export const getTitleDetails = async (title: string, id: string | null) => {
   } as TitleDetails;
 };
 
-export const getEpisodesOveview = async (
-  seriesId: string | null,
-  seasonNumber: string | null,
-) => {
+export const getEpisodesOveview = async ({
+  seriesId,
+  seasonNumber,
+  pageParam,
+}: {
+  seriesId: string | null;
+  seasonNumber: string | null;
+  pageParam: number;
+}) => {
   if (!seriesId) return;
 
   const data = await fetchClient<TMDBTVSeasonInfo>(
     `${API_URL}tv/${seriesId}/season/${seasonNumber || 1}${API_KEY_PARAM}`,
   );
 
+  const start = pageParam * 10;
+  const end = (pageParam + 1) * 10;
+
   const episodesOverview: Episode[] = data.episodes
     .filter((episode) => episode.still_path)
-    .map((episode) => {
-      return {
-        id: episode.id,
-        episodeName: episode.name,
-        overview: episode.overview,
-        length: episode.runtime,
-        episodeNumber: episode.episode_number,
-        imageURL: episode.still_path,
-      };
-    });
-  return episodesOverview;
+    .slice(start, end)
+    .map((episode) => ({
+      id: episode.id,
+      episodeName: episode.name,
+      overview: episode.overview,
+      length: episode.runtime,
+      episodeNumber: episode.episode_number,
+      imageURL: episode.still_path,
+    }));
+
+  return { episodesOverview, nextPage: pageParam + 1 };
 };
 
 export const getNumberOfSeasons = async (id: string | null) => {
