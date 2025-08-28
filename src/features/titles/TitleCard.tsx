@@ -8,12 +8,20 @@ import Container from "../../components/ui/Container";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 import { getGenresByIds } from "../../utils/getGenresByIds";
-import { useNavigate } from "react-router";
+import { useSearchParams } from "react-router";
 
 function TitleCard({ title }: { title: Title }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const genres = getGenresByIds(title.genreIds, title.mediaType);
-  const navigate = useNavigate();
+
+  const handleOpenModal = () => {
+    searchParams.set(
+      `${title.mediaType === "movie" ? "movie" : "tv"}`,
+      `${title.id}`,
+    );
+    setSearchParams(searchParams);
+  };
 
   return (
     <div
@@ -60,14 +68,7 @@ function TitleCard({ title }: { title: Title }) {
               />
               <AddCircleOutlineIcon className="h-12! w-12! text-[#a3a3a3]" />
             </div>
-            <button
-              className="cursor-pointer"
-              onClick={() =>
-                navigate(
-                  `?${title.mediaType === "movie" ? "movie" : "tv"}=${title.id}`,
-                )
-              }
-            >
+            <button className="cursor-pointer" onClick={handleOpenModal}>
               <ExpandCircleDownIcon
                 fontSize="large"
                 className="h-12! w-12! text-[#a3a3a3]"
@@ -81,7 +82,7 @@ function TitleCard({ title }: { title: Title }) {
             <MediaTag value="HD" />
           </div>
           <ul className="flex flex-wrap gap-3 text-sm font-medium">
-            {genres.map((genre) => {
+            {genres?.map((genre) => {
               return genre?.name && <li key={genre.id}>{genre.name}</li>;
             })}
           </ul>

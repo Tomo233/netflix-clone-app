@@ -123,3 +123,23 @@ export const getNumberOfSeasons = async (id: string | null) => {
 
   return data.number_of_seasons;
 };
+
+export const getSearchedResults = async (query: string | null) => {
+  if (!query) return;
+
+  const results = await fetchClient<TMDBTitle[]>(
+    `${API_URL}search/multi${API_KEY_PARAM}&query=${query}`,
+  );
+
+  const toTransfrom = results.filter((results) => results.backdrop_path);
+  const transformedData = transfromTitleData(toTransfrom);
+
+  const finalData: Title[] = transformedData.map((item, index) => {
+    return {
+      ...item,
+      genreIds: results[index].genre_ids,
+    };
+  });
+
+  return finalData;
+};
