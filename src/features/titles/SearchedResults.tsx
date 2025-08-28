@@ -1,5 +1,3 @@
-import TitleCard from "./TitleCard";
-
 function SearchedResults() {
   return (
     <>
@@ -21,21 +19,7 @@ function SearchedResults() {
           <li>Prison Break</li>
         </ul>
       </div>
-      <div className="grid grid-cols-5">
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-        <TitleCard />
-      </div>
+      <div className="grid grid-cols-5"></div>
     </>
   );
 }
