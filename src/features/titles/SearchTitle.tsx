@@ -1,10 +1,12 @@
 import { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 function SearchTitle() {
   const [showInput, setShowInput] = useState(false);
   const navigate = useNavigate();
+  const ref = useOutsideClick(() => setShowInput(false));
 
   const handleQueryChange = (value: string) => {
     if (value) {
@@ -15,7 +17,7 @@ function SearchTitle() {
   };
 
   return (
-    <>
+    <div ref={ref}>
       {showInput && (
         <input
           type="search"
@@ -37,7 +39,7 @@ function SearchTitle() {
           }}
         />
       </button>
-    </>
+    </div>
   );
 }
 

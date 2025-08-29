@@ -27,12 +27,13 @@ function SearchedResults() {
         </span>
         <ul className="flex cursor-pointer gap-5 font-medium tracking-wide">
           {moreToExplore?.map((item) => (
-            <>
-              <li className="transition-colors duration-300 ease-in-out hover:text-red-500">
-                {item}
-              </li>
-              <span>|</span>
-            </>
+            <li
+              className="transition-colors duration-300 ease-in-out hover:text-red-500"
+              key={item}
+            >
+              {item}
+              <span className="pl-3">|</span>
+            </li>
           ))}
         </ul>
       </div>
