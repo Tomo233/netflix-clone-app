@@ -11,13 +11,12 @@ import { useSearchParams } from "react-router";
 
 type MenuProps = {
   data: { id: string | number; name: string }[];
-  handleMenuChange: (event: SelectChangeEvent) => void;
-  paramName?: string;
+  paramName: string;
   grid?: boolean;
 };
 
-function Menu({ data, grid = false, paramName, handleMenuChange }: MenuProps) {
-  const [searchParams] = useSearchParams();
+function Menu({ data, grid = false, paramName }: MenuProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [value, setValue] = useState(() => {
     if (!paramName) return data[0].name;
@@ -31,7 +30,15 @@ function Menu({ data, grid = false, paramName, handleMenuChange }: MenuProps) {
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
-    handleMenuChange(event);
+
+    const paramValue = data.find(
+      (item) => item.name === event.target.value,
+    )?.id;
+
+    if (!paramValue) searchParams.delete(paramName);
+    else searchParams.set(paramName, paramValue.toString());
+
+    setSearchParams(searchParams);
   };
 
   const columnCount =

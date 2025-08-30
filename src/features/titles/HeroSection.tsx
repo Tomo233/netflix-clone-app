@@ -17,7 +17,7 @@ function HeroSection() {
   if (isLoadingHeroTitle) return <SkeletonLoader />;
 
   return (
-    <section className="mb-64">
+    <section className="mb-96">
       {/* Image */}
       <div className="absolute top-0 left-1/2 -z-10 w-full -translate-x-1/2">
         <img
@@ -33,7 +33,7 @@ function HeroSection() {
       {pathname !== "/browse" && <HeroTitleMenu />}
 
       {/* Content */}
-      <div className="max-w-4xl space-y-4 px-4 pt-36">
+      <div className="max-w-4xl space-y-4 px-4 pt-24">
         <NetflixShow />
         <h1 className="text-5xl font-extrabold">{heroTitle?.titleName}</h1>
         <p className="max-w-xl text-lg">{heroTitle?.overview}</p>

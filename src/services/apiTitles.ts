@@ -63,6 +63,7 @@ export const getTitleDetails = async (title: string, id: string | null) => {
   const data = await fetchClient<TMDBTitleDetails>(
     `${API_URL}${title}/${id}${API_KEY_PARAM}`,
   );
+
   const transformedData = transfromTitleData(data);
 
   return {
