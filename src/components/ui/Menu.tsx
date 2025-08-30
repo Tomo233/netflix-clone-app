@@ -20,11 +20,11 @@ function Menu({ data, grid = false, paramName }: MenuProps) {
 
   const [value, setValue] = useState(() => {
     if (!paramName) return data[0].name;
+
     const paramValue = searchParams.get(paramName);
 
     return (
-      data.find((el) => el.name.includes(paramValue ?? ""))?.name ??
-      data[0].name
+      data.find((el) => el.id.toString() === paramValue)?.name ?? data[0].name
     );
   });
 

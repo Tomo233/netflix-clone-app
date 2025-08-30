@@ -10,10 +10,19 @@ import type { TMDBTVSeasonInfo } from "../types/tmdb/tv/TMDBTVSeasonInfo";
 import { fetchClient } from "../utils/fetchClient";
 import { transfromTitleData } from "../utils/transformTitleData";
 
-export const getHeroTitle = async (pathname: string) => {
-  const results = await fetchClient<TMDBHeroTitle[]>(
-    `${API_URL}trending/all/day${API_KEY_PARAM}`,
-  );
+export const getHeroTitle = async (
+  path: string,
+  genreId: string | undefined,
+) => {
+  let fullUrl;
+
+  if (genreId) {
+    fullUrl = `${API_URL}discover/${path}${API_KEY_PARAM}&with_genres=${genreId}`;
+  } else {
+    fullUrl = `${API_URL}trending/all/day${API_KEY_PARAM}`;
+  }
+
+  const results = await fetchClient<TMDBHeroTitle[]>(fullUrl);
 
   const filteredResults = results.filter(
     (result) => result.media_type !== "person",
@@ -21,10 +30,8 @@ export const getHeroTitle = async (pathname: string) => {
 
   let title: TMDBHeroTitle;
 
-  if (pathname !== "/browse") {
-    title = filteredResults.filter(
-      (result) => result.media_type === pathname.slice(1),
-    )[1];
+  if (path !== "browse" && !genreId) {
+    title = filteredResults.filter((result) => result.media_type === path)[1];
   } else {
     title = filteredResults[0];
   }
