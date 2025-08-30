@@ -1,9 +1,11 @@
+import type { SelectChangeEvent } from "@mui/material";
 import Menu from "../../components/ui/Menu";
 import ProgressLoader from "../../components/ui/ProgressLoader";
 import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 import { useEpisodes } from "./hooks/useEpisodes";
 import { useNumberOfSeasons } from "./hooks/useNumberOfSeasons";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import { useSearchParams } from "react-router";
 
 function EpisodesSection() {
   const {
@@ -14,14 +16,24 @@ function EpisodesSection() {
     hasNextPage,
   } = useEpisodes();
   const { numberOfSeasons, isLoadingNumberOfSeasons } = useNumberOfSeasons();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   if (isLoadingEpisodesOverview || isLoadingNumberOfSeasons)
     return <ProgressLoader />;
 
-  const menuData = Array.from(
-    { length: numberOfSeasons! },
-    (_, index) => `Season ${index + 1}`,
-  );
+  const menuData = Array.from({ length: numberOfSeasons! }, (_, index) => ({
+    id: index + 1,
+    name: `Season ${index + 1}`,
+  }));
+
+  const handleMenuChange = (event: SelectChangeEvent) => {
+    const paramValue = menuData.find(
+      (item) => item.name === event.target.value,
+    )?.id;
+    if (!paramValue) return;
+    searchParams.set("season", paramValue.toString());
+    setSearchParams(searchParams);
+  };
 
   return (
     <section className="pt-3">
@@ -31,7 +43,11 @@ function EpisodesSection() {
           <h3 className="pt-3 text-2xl font-semibold">Episodes</h3>
           <p className="pt-1 text-sm font-medium tracking-wider">Season 1 :</p>
         </div>
-        <Menu data={menuData} paramName="season" />
+        <Menu
+          data={menuData}
+          paramName="season"
+          handleMenuChange={handleMenuChange}
+        />
       </div>
 
       {/* Main Content */}

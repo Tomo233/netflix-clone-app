@@ -9,10 +9,9 @@ function TitleModal() {
 
   const handleCloseModal = () => {
     const titleKey = searchParams.has("movie") ? "movie" : "tv";
-    const seasonKey = searchParams.get("season");
-
+    const seasonKey = searchParams.has("season") ? "season" : "";
     searchParams.delete(titleKey);
-    searchParams.delete(seasonKey || "");
+    searchParams.delete(seasonKey);
     setSearchParams(searchParams);
   };
 

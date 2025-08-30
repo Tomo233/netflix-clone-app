@@ -10,24 +10,28 @@ import type { SelectChangeEvent } from "@mui/material/Select";
 import { useSearchParams } from "react-router";
 
 type MenuProps = {
-  data: string[];
-  paramName: string;
+  data: { id: string | number; name: string }[];
+  handleMenuChange: (event: SelectChangeEvent) => void;
+  paramName?: string;
   grid?: boolean;
 };
 
-function Menu({ data, grid = false, paramName }: MenuProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+function Menu({ data, grid = false, paramName, handleMenuChange }: MenuProps) {
+  const [searchParams] = useSearchParams();
 
   const [value, setValue] = useState(() => {
+    if (!paramName) return data[0].name;
     const paramValue = searchParams.get(paramName);
-    return data.find((el) => el.includes(paramValue ?? "")) ?? data[0];
+
+    return (
+      data.find((el) => el.name.includes(paramValue ?? ""))?.name ??
+      data[0].name
+    );
   });
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
-    const paramValue = event.target.value.split(" ")[1];
-    searchParams.set(paramName, paramValue);
-    setSearchParams(searchParams);
+    handleMenuChange(event);
   };
 
   const columnCount =
@@ -57,7 +61,7 @@ function Menu({ data, grid = false, paramName }: MenuProps) {
           value={value}
           displayEmpty
           input={<OutlinedInput notched={false} />}
-          label="Genre"
+          label=""
           onChange={handleChange}
           MenuProps={{
             PaperProps: {
@@ -109,7 +113,7 @@ function Menu({ data, grid = false, paramName }: MenuProps) {
             return (
               <MenuItem
                 key={i}
-                value={el}
+                value={el.name}
                 sx={{
                   backgroundColor: "#141414 !important",
                   height: "40px",
@@ -121,7 +125,7 @@ function Menu({ data, grid = false, paramName }: MenuProps) {
                   },
                 }}
               >
-                {el}
+                {el.name}
               </MenuItem>
             );
           })}
