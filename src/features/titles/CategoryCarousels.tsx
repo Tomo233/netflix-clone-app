@@ -12,8 +12,7 @@ function CategoryCarousels() {
       {TMDB_ENDPOINTS[location as "browse" | "movie" | "tv"].map((item) => {
         return (
           <div key={item.title}>
-            <h2 className="text-2xl font-medium tracking-wide">{item.title}</h2>
-            <TitleCarousel url={item.url} />
+            <TitleCarousel item={item} />
           </div>
         );
       })}

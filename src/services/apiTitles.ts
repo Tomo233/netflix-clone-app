@@ -46,11 +46,15 @@ export const getHeroTitle = async (
   } as HeroTitle;
 };
 
-export const getTitles = async (url: string, location: string) => {
+export const getTitles = async (
+  url: string,
+  path: string,
+  genreId: string | undefined,
+) => {
   let fullUrl: string;
 
-  if (location !== "browse" && !url.includes("trending")) {
-    fullUrl = `${API_URL}${location}/${url}${API_KEY_PARAM}`;
+  if (path !== "browse" && !url.includes("trending")) {
+    fullUrl = `${API_URL}${path}/${url}${API_KEY_PARAM}`;
   } else {
     fullUrl = `${API_URL}${url}${API_KEY_PARAM}`;
   }
@@ -58,10 +62,18 @@ export const getTitles = async (url: string, location: string) => {
 
   const transformedData = transfromTitleData(results);
 
-  return transformedData.map((item, index) => ({
+  const finalData = transformedData.map((item, index) => ({
     ...item,
     genreIds: results[index].genre_ids,
-  })) as Title[];
+  }));
+
+  if (genreId) {
+    return finalData.filter((item) =>
+      item.genreIds.find((genre) => genre.toString() === genreId),
+    ) as Title[];
+  } else {
+    return finalData as Title[];
+  }
 };
 
 export const getTitleDetails = async (title: string, id: string | null) => {
