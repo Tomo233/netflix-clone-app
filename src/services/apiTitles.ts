@@ -1,19 +1,18 @@
 import { API_KEY_PARAM, API_URL } from "../constants/tmdbBaseUrls";
 import type { Episode } from "../types/titles/Episode";
 import type { HeroTitle } from "../types/titles/HeroTitle";
+import type { SimilarTitle } from "../types/titles/SimilarTitle";
 import type { Title } from "../types/titles/Title";
 import type { TitleDetails } from "../types/titles/TitleDetails";
 import type { TMDBHeroTitle } from "../types/tmdb/entities/TMDBHeroTitle";
+import type { TMDBSimilarTitle } from "../types/tmdb/entities/TMDBSimilarTitle";
 import type { TMDBTitle } from "../types/tmdb/entities/TMDBTitle";
 import type { TMDBTitleDetails } from "../types/tmdb/entities/TMDBTitleDetails";
 import type { TMDBTVSeasonInfo } from "../types/tmdb/tv/TMDBTVSeasonInfo";
 import { fetchClient } from "../utils/fetchClient";
 import { transfromTitleData } from "../utils/transformTitleData";
 
-export const getHeroTitle = async (
-  path: string,
-  genreId: string | undefined,
-) => {
+export const getHeroTitle = async (path: string, genreId: string | null) => {
   let fullUrl;
 
   if (genreId) {
@@ -21,7 +20,6 @@ export const getHeroTitle = async (
   } else {
     fullUrl = `${API_URL}trending/all/day${API_KEY_PARAM}`;
   }
-
   const results = await fetchClient<TMDBHeroTitle[]>(fullUrl);
 
   const filteredResults = results.filter(
@@ -161,5 +159,31 @@ export const getSearchedResults = async (query: string | null) => {
     };
   });
 
+  return finalData;
+};
+
+export const getSimilarTitles = async (
+  title: "movie" | "tv",
+  id: string | null,
+) => {
+  if (!id) return;
+
+  const results = await fetchClient<TMDBSimilarTitle[]>(
+    `${API_URL}${title}/${id}/similar${API_KEY_PARAM}`,
+  );
+  const transformedData = transfromTitleData(results);
+
+  const finalData: SimilarTitle[] = transformedData
+    .slice(0, 9)
+    .map((item, index) => ({
+      ...item,
+      genreIds: results[index].genre_ids,
+      releaseYear:
+        "release_date" in results[index]
+          ? results[index].release_date.split("-")[0]
+          : results[index].first_air_date.split("-")[0],
+      overview: results[index].overview,
+      mediaType: title,
+    }));
   return finalData;
 };

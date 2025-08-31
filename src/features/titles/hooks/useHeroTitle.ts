@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { getHeroTitle } from "../../../services/apiTitles";
-import { useLocation } from "react-router";
+import { useLocation, useSearchParams } from "react-router";
 
 export const useHeroTitle = () => {
-  const { pathname, search } = useLocation();
+  const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
 
-  const genreId = search.split("=").at(1);
+  const genreId = searchParams.get("genre");
   const path = pathname.slice(1);
 
   const { data: heroTitle, isLoading: isLoadingHeroTitle } = useQuery({
