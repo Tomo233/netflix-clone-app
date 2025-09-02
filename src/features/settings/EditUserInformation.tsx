@@ -1,4 +1,5 @@
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
+import AuthInput from "../authentication/AuthInput";
 
 function EditUserInformation() {
   return (
@@ -11,31 +12,13 @@ function EditUserInformation() {
         </button>
       </div>
       <form className="grid grid-cols-2 items-end gap-y-6">
-        <input
-          type="text"
-          placeholder="UserName"
-          name="username"
-          className="border-border-color w-80 rounded-sm border px-3 py-3"
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="border-border-color w-80 rounded-sm border px-3 py-3"
-        />
-
-        <input
+        <AuthInput type="text" placeholder="UserName" variant="login" />
+        <AuthInput type="email" placeholder="Email" variant="login" />
+        <AuthInput type="password" placeholder="Password" variant="login" />
+        <AuthInput
           type="password"
-          name="password"
-          placeholder="Password"
-          className="border-border-color w-80 rounded-sm border px-3 py-3"
-        />
-
-        <input
-          type="password"
-          name="confirmPassword"
           placeholder="ConfirmPassword"
-          className="border-border-color w-80 rounded-sm border px-3 py-3"
+          variant="login"
         />
       </form>
     </section>

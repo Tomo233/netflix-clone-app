@@ -1,32 +1,13 @@
+import AuthInput from "./AuthInput";
+
 function SignupForm() {
   return (
     <form>
       <div className="grid grid-cols-2 gap-5">
-        <input
-          type="text"
-          placeholder="UserName"
-          className="border-border-color w-56 rounded-sm border px-3 py-3"
-          name="username"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="border-border-color w-56 rounded-sm border px-3 py-3"
-          name="email"
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          className="border-border-color w-56 rounded-sm border px-3 py-3"
-          name="password"
-        />
-        <input
-          type="password"
-          placeholder="ConfirmPassword"
-          className="border-border-color w-56 rounded-sm border px-3 py-3"
-          name="confirmpassword"
-        />
+        <AuthInput type="text" placeholder="UserName" />
+        <AuthInput type="email" placeholder="Email" />
+        <AuthInput type="password" placeholder="Password" />
+        <AuthInput type="password" placeholder="ConfirmPassword" />
       </div>
 
       <button

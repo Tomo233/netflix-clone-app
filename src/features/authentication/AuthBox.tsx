@@ -16,7 +16,7 @@ function AuthBox() {
         <p className="pt-1 pb-3 text-center">
           Do {!isSignup && "not"} have an account?
           <Link
-            className="font-medium text-red-600 underline"
+            className="ml-1 font-medium text-red-600 underline"
             to={`${isSignup ? "/login" : "/signup"}`}
           >
             {isSignup ? "Login" : "SignUp"}
