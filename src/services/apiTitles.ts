@@ -47,7 +47,7 @@ export const getHeroTitle = async (path: string, genreId: string | null) => {
 export const getTitles = async (
   url: string,
   path: string,
-  genreId: string | undefined,
+  genreId: string | null,
 ) => {
   let fullUrl: string;
 
