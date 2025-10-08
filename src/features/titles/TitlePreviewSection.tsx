@@ -1,8 +1,6 @@
 import Overlay from "../../components/ui/Overlay";
-
 import CloseIcon from "@mui/icons-material/Close";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 import NetflixShow from "../../components/ui/NetflixShow";
@@ -10,6 +8,7 @@ import { useTitleDetails } from "./hooks/useTitleDetails";
 import ProgressLoader from "../../components/ui/ProgressLoader";
 import { getGenresByIds } from "../../utils/getGenresByIds";
 import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
+import AddToMyList from "../my-list/AddToMyList";
 
 function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
   const { titleDetails, isLoadingTitleDetails } = useTitleDetails();
@@ -61,9 +60,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
               <PlayArrowIcon fontSize="large" />
               Play
             </button>
-            <button className="cursor-pointer">
-              <AddCircleOutlineIcon className="h-12! w-12! text-[#a3a3a3]" />
-            </button>
+            <AddToMyList title={titleDetails} />
           </div>
         </div>
       </div>
@@ -98,7 +95,7 @@ function TitlePreviewSection({ handleClose }: { handleClose: () => void }) {
 
             <p className="text-secondary-text-color mt-2 font-medium tracking-wide">
               Genres :{" "}
-              {genres.map((genre, i) => (
+              {genres?.map((genre, i) => (
                 <span className="font-semibold text-white" key={i}>
                   {genre?.name}
                   {i !== genres.length - 1 && ", "}

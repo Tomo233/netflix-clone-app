@@ -3,12 +3,12 @@ import type { Title } from "../../types/titles/Title";
 import { IMAGE_BASE_URL } from "../../constants/tmdbBaseUrls";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Container from "../../components/ui/Container";
 import MediaTag from "../../components/ui/MediaTag";
 import Rating from "../../components/ui/Rating";
 import { getGenresByIds } from "../../utils/getGenresByIds";
 import { useSearchParams } from "react-router";
+import AddToMyList from "../my-list/AddToMyList";
 
 function TitleCard({ title }: { title: Title }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -66,7 +66,7 @@ function TitleCard({ title }: { title: Title }) {
                 fontSize="large"
                 className="h-12! w-12! text-white"
               />
-              <AddCircleOutlineIcon className="h-12! w-12! text-[#a3a3a3]" />
+              <AddToMyList title={title} />
             </div>
             <button className="cursor-pointer" onClick={handleOpenModal}>
               <ExpandCircleDownIcon
