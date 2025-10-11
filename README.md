@@ -1,69 +1,49 @@
-# React + TypeScript + Vite
+# 🎬 Netflix Clone App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Netflix-inspired web application built with **React** and **TypeScript**, powered by the **TMDB API** to display real movie and TV show data.  
+Users can browse movies, TV shows, search for titles, and manage a personal “My List” — all stored locally in the browser.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🏠 **Home Page** – Shows trending and popular titles from TMDB  
+- 🎥 **Movies Page** – Browse all available movies  
+- 📺 **TV Shows Page** – Explore popular and top-rated TV shows  
+- 🔍 **Search** – Find movies or TV shows by title  
+- ❤️ **My List** – Add or remove titles (saved in Local Storage)  
+- ⚡ **Data Fetching** – Handled with React Query for efficient caching  
+- 🧭 **Routing** – Built with React Router for smooth navigation  
+- 💎 **Modern UI** – Styled with MUI icons  
+- 🖥️ **Desktop Only** – No responsive design  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧩 Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **React** + **TypeScript**  
+- **React Router**  
+- **React Query**  
+- **MUI Icons**  
+- **TMDB API**  
+- **Local Storage**  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Installation & Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Clone this repository
+git clone https://github.com/Tomo233/netflix-clone-app.git
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# Navigate into the project directory
+cd netflix-clone-app
+
+# Install dependencies
+npm install
+
+# Create a .env file and add your TMDB API key
+VITE_TMDB_API_KEY=your_api_key_here
+
+# Start the development server
+npm run dev
