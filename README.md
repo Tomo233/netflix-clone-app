@@ -26,7 +26,8 @@ Users can browse movies, TV shows, search for titles, and manage a personal “M
 - **React Query**  
 - **MUI Icons**  
 - **TMDB API**  
-- **Local Storage**  
+- **Local Storage**
+-  **React Context API**  
 
 ---
 
